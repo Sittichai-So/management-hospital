@@ -7,8 +7,10 @@ import { CustomerComponent } from './features/customer/customer.component';
 import { ReportsComponent } from './features/reports/reports.component';
 import { SettingsComponent } from './features/settings/settings.component';
 import { ListItemComponent } from './features/list-item/list-item.component';
+import { LoginComponent } from './features/auth/login.component';
 
 export const routes: Routes = [ 
+  { path: '', component: LoginComponent },
   {
     path: '',
     component: MainLayoutComponent,
@@ -19,7 +21,6 @@ export const routes: Routes = [
       { path: 'reports', component: ReportsComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'list-item', component: ListItemComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
   { path: '**', redirectTo: '' }

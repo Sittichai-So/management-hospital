@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section>
+    <section class="users">
       <header>
         <h2>👥 User Management</h2>
         <p>จัดการข้อมูลผู้ใช้งานและสิทธิ์การเข้าถึง</p>

@@ -1,0 +1,38 @@
+<div class="login-page">
+  <div class="login-box">
+    <div class="logo">
+      <!-- <img src="assets/hospital-logo.png" alt="AEF-Hospital Logo" /> -->
+      <h2>AEF-Hospital</h2>
+    </div>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <div class="input-group">
+        <label>Username</label>
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          required
+          placeholder="Enter your username"
+        />
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <button type="submit" class="login-btn">LOGIN</button>
+    </form>
+  </div>
+
+  <div class="login-bg">
+    <img src="assets/images/background-hos.png" alt="Background" />
+  </div>
+</div>

@@ -1,23 +1,45 @@
-<div class="layout">
+<div class="layout" [class.sidebar-collapsed]="isCollapsed">
   <aside class="sidebar">
     <div class="sidebar-header">
-      <span class="logo">🧭</span>
-      <h2>MENU</h2>
+      <h2>HOSPITAL</h2>
+      <div>
+        <button class="hamburger" (click)="toggleSidebar()">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
     </div>
-
+    <br>
+<hr>
     <nav class="nav">
-      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/users" routerLinkActive="active">Users</a>
-      <a routerLink="/customer" routerLinkActive="active">Customer</a>
-      <a routerLink="/list-item" routerLinkActive="active">List item</a>
-      <a routerLink="/reports" routerLinkActive="active">Reports</a>
-      <a routerLink="/settings" routerLinkActive="active">Settings</a>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+      </a>
+      <a routerLink="/users" routerLinkActive="active">
+        <i class="fas fa-users"></i> <span>Users</span>
+      </a>
+      <a routerLink="/customer" routerLinkActive="active">
+        <i class="fas fa-user-friends"></i> <span>Customer</span>
+      </a>
+      <a routerLink="/list-item" routerLinkActive="active">
+        <i class="fas fa-list"></i> <span>List Item</span>
+      </a>
+      <a routerLink="/reports" routerLinkActive="active">
+        <i class="fas fa-chart-line"></i> <span>Reports</span>
+      </a>
+      <a routerLink="/settings" routerLinkActive="active">
+        <i class="fas fa-cog"></i> <span>Settings</span>
+      </a>
     </nav>
+
   </aside>
 
   <main class="main-content">
     <header class="main-header">
       <h3>Hospital Management</h3>
+      <div class="user-info">
+        <img src="assets/images/pon-nin.jpg" alt="User Avatar" class="user-avatar" />
+        <span class="user-name">Admin Aef</span>
+      </div>
     </header>
 
     <section class="content">

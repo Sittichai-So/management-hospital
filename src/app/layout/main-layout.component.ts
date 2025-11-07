@@ -9,4 +9,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.css']
 })
-export class MainLayoutComponent {}
+export class MainLayoutComponent {
+isCollapsed = false;
+
+toggleSidebar() {
+  this.isCollapsed = !this.isCollapsed;
+}
+
+}

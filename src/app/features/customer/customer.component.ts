@@ -9,13 +9,6 @@ import { FormsModule } from '@angular/forms';
   template: ` 
   <main class="content">
     <h2>รายการคนไข้</h2>
-
-    <div class="tabs">
-      <button [class.active]="selectedTab === 'list'">รายการคนไข้</button>
-      <button [class.active]="selectedTab === 'history'">ประวัติการรักษา</button>
-      <button [class.active]="selectedTab === 'payment'">เงินฝาก/โอน</button>
-    </div>
-
     <div class="toolbar">
       <input type="text" placeholder="ค้นหา HN, ชื่อ, เบอร์โทร" [(ngModel)]="search">
       <select [(ngModel)]="gender">

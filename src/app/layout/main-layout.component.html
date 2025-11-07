@@ -1,0 +1,27 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="logo">🧭</span>
+      <h2>MENU</h2>
+    </div>
+
+    <nav class="nav">
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/users" routerLinkActive="active">Users</a>
+      <a routerLink="/customer" routerLinkActive="active">Customer</a>
+      <a routerLink="/list-item" routerLinkActive="active">List item</a>
+      <a routerLink="/reports" routerLinkActive="active">Reports</a>
+      <a routerLink="/settings" routerLinkActive="active">Settings</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="main-header">
+      <h3>Hospital Management</h3>
+    </header>
+
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

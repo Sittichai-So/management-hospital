@@ -1,6 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Customer } from '../../features/customer/models/customer.model'
+import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiRequestService } from '../../shared/services/api-request.service';
+
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
 
 @Component({
   selector: 'app-customer',
@@ -44,14 +55,13 @@ import { FormsModule } from '@angular/forms';
       </thead>
       <tbody>
         <tr *ngFor="let p of customer">
-          <td>{{ p.hn }}</td>
-          <td>{{ p.name }}</td>
-          <td>{{ p.phone }}</td>
-          <td>{{ p.gender }}</td>
-          <td>{{ p.age }}</td>
-          <td>{{ p.lastVisit }}</td>
+          <td>{{ p.HN }}</td>
+          <td>{{ p.FirstName }} {{ p.LastName }}</td>
+          <td>{{ p.PhoneNumber }}</td>
+          <td>{{ p.Gender }}</td>
+          <td>{{ p.Birthdate }}</td>
           <td>
-            <span [class]="p.group.toLowerCase()">{{ p.group }}</span>
+            <span [class]="p.ContactType.toLowerCase()">{{ p.ContactType }}</span>
           </td>
           <td>⋮</td>
         </tr>
@@ -246,20 +256,34 @@ tr:nth-child(even) {
   `
 })
 export class CustomerComponent {
-  selectedTab = 'list';
+  constructor(
+    private readonly reqService: ApiRequestService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private http: HttpClient
+  ) {
+    this.loadCustomers();
+  }
+
   search = '';
   gender = '';
   group = '';
+  customer: Customer[] = [];
 
-  customer = [
-    { hn: 'RK-122094223', name: 'วีรารัตน์ ธรรมวงศ์', phone: '098-285-6421', gender: 'หญิง', age: 26, lastVisit: '12/06/66', group: 'Contract' },
-    { hn: 'RK-122094234', name: 'พรรณา ธาตรวงศ์', phone: '098-285-6421', gender: 'หญิง', age: 30, lastVisit: '12/06/66', group: 'Contract' },
-    { hn: 'RK-122094255', name: 'นาณิสรา ภูผักดี', phone: '098-285-6421', gender: 'หญิง', age: 21, lastVisit: '12/06/66', group: 'ทั่วไป' },
-    { hn: 'RK-122094290', name: 'กิตติภัณฑ์ ตรีทรัพย์', phone: '098-285-6421', gender: 'ชาย', age: 20, lastVisit: '12/06/66', group: 'VIP' },
-    { hn: 'RK-122094200', name: 'นวพร ภูผักดี', phone: '098-285-6421', gender: 'หญิง', age: 58, lastVisit: '12/06/66', group: 'VIP' },
-    { hn: 'RK-122094211', name: 'นภัสสร แสงดารา', phone: '098-285-6421', gender: 'หญิง', age: 42, lastVisit: '12/06/66', group: 'VIP' },
-    { hn: 'RK-122094283', name: 'อัมณี กลิ่นเพชร', phone: '098-285-6421', gender: 'หญิง', age: 44, lastVisit: '12/06/66', group: 'Contract' },
-    { hn: 'RK-122093575', name: 'ไสรยา เกียรตินวรลาภ', phone: '098-285-6421', gender: 'หญิง', age: 18, lastVisit: '12/06/66', group: 'Contract' },
-    { hn: 'RK-122093595', name: 'พรทิพา วงศ์สวัสดิ์', phone: '098-285-6421', gender: 'หญิง', age: 30, lastVisit: '12/06/66', group: 'Contract' },
-  ];
+  loadCustomers() {
+    this.getAllCustomers().subscribe({
+      next: (res) => {
+        this.customer = res;
+        console.log('✅ Loaded customers:', res);
+      },
+      error: (err) => {
+        console.error('❌ Error loading customers:', err);
+        alert('ไม่สามารถโหลดข้อมูลลูกค้าได้');
+      }
+    });
+  }
+
+  getAllCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>('/api/v1/customer/');
+  }
 }
